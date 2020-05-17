@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Om Appen"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtJson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Om Appen"
+            tools:ignore="MissingConstraints" />
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="417dp"
+            android:layout_height="516dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="-3dp" />
+        <Button
+            android:id="@+id/btn_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEST"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="37dp" />
+        <Button
+            android:id="@+id/close_second_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="37dp" />
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
