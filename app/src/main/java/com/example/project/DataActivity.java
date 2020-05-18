@@ -3,16 +3,15 @@ package com.example.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,14 +25,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.LongSummaryStatistics;
 
 public class DataActivity extends AppCompatActivity {
-
-    ProgressDialog pd;
-    TextView txtJson;
 
     final ArrayList<String> items = new ArrayList<>();
     ArrayAdapter<String> adapter;
@@ -41,13 +35,19 @@ public class DataActivity extends AppCompatActivity {
     final ArrayList<String> messageInfo = new ArrayList<>();
     ArrayAdapter<String> adapter2;
 
+    ImageView mountainImage;
+    String imageUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
+        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?login=a19gusba");
 
         adapter = new ArrayAdapter<String>(this, R.layout.listview_item, items);
         adapter2 = new ArrayAdapter<String>(this, R.layout.listview_item, messageInfo);
+
+        mountainImage = (ImageView)findViewById(R.id.mountain_img);
 
         ListView view = findViewById(R.id.list_view);
         view.setAdapter(adapter);
@@ -55,14 +55,20 @@ public class DataActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(DataActivity.this, messageInfo.get(position), Toast.LENGTH_SHORT).show();
+                loadImage(imageUrl);
+            }
+
+            private void loadImage(String imageUrl) {
+
             }
         });
 
-        Button button = findViewById(R.id.btn_test);
-        button.setOnClickListener(new View.OnClickListener(){
+        // Close activity
+        Button close = findViewById(R.id.close_data_activity);
+        close.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
+                finish();
             }
         });
     }
@@ -74,7 +80,6 @@ public class DataActivity extends AppCompatActivity {
         private BufferedReader reader = null;
 
         protected String doInBackground(String... params) {
-            Log.d("TAGasd", "before");
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
@@ -104,14 +109,32 @@ public class DataActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.d("TAGasd", "after");
             }
             return null;
         }
 
         @Override
         protected void onPostExecute(String json) {
-            Log.d("TAGasd", json);
+            try {
+                items.clear();
+                messageInfo.clear();
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i = 0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    final String name = jsonObject.getString("name");
+                    final String location = jsonObject.getString("location");
+                    final String size = jsonObject.getString("size");
+                    imageUrl = jsonObject.getString("auxdata");
+                    final String message = "Name: " + name + ", Location: " + location + ",  Size: " + size;
+
+                    items.add(name);
+                    messageInfo.add(message);
+                }
+                adapter.notifyDataSetChanged();
+                adapter2.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -12,7 +12,7 @@
 
     <Button
         android:id="@+id/close_about_activity"
-        android:layout_width="174dp"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:text="Back" />
 
