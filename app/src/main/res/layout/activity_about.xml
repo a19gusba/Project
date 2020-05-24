@@ -3,12 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Om Appen"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/about_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:text="Målgruppen för denna app är ganska stor då intresset för berg kan finnas både hos barn och vuxna. Informationen om bergen som finns i appen kan även användas på flera olika sätt då bland annat kunskap om vad berget heter, vart det finns och hur stort det är kan läsas av rent intresse eller att läsa på om ett framtida resmål."
+        android:textSize="20sp"
+        android:textStyle="normal" />
 
     <Button
         android:id="@+id/close_about_activity"
