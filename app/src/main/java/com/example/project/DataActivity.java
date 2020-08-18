@@ -123,9 +123,11 @@ public class DataActivity extends AppCompatActivity {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     final String name = jsonObject.getString("name");
                     final String location = jsonObject.getString("location");
+                    final String company = jsonObject.getString("company");
+                    final String cost = jsonObject.getString("cost");
                     final String size = jsonObject.getString("size");
                     imageUrl = jsonObject.getString("auxdata");
-                    final String message = "Name: " + name + ", Location: " + location + ",  Size: " + size;
+                    final String message = "Name: " + name + ", Company: " + company + ", Cost: $" + cost + ", Store: " + location + ",  Size: " + size + "mm";
 
                     items.add(name);
                     messageInfo.add(message);

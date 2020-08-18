@@ -20,7 +20,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
-        android:text="Målgruppen för denna app är ganska stor då intresset för berg kan finnas både hos barn och vuxna. Informationen om bergen som finns i appen kan även användas på flera olika sätt då bland annat kunskap om vad berget heter, vart det finns och hur stort det är kan läsas av rent intresse eller att läsa på om ett framtida resmål."
+        android:text="Denna app är till för att jämföra olika kuber baserat på typ, storlek, tillverkare och pris. Denna typ av information samt vart kuben finns att köpa finns i appen."
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Målgrupp"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/about_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:text="Målgruppen för denna app är för de som är intresserade av rubik’s kub på ett eller annat sätt. Detta inkluderar de som faktiskt kan lösa kuben samt de som inte kan. Ett exempel på användare som inte kan lösa kuben kan vara föräldrar som köper en kub till sitt barn. "
         android:textSize="20sp"
         android:textStyle="normal" />
 
